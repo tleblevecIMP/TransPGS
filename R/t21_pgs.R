@@ -1,5 +1,11 @@
-# Function to compute and plot the transiograms from gaussian parameters
-# using the mvtnorm package for the multivariate gaussian integral
+#' Function to compute and plot the transiograms t21 from gaussian parameters
+#' using the mvtnorm package for the multivariate gaussian integral
+#' @param nb_facies is the number of facies
+#' @param props is the vector of the proportion of each facies
+#' @param r1 is the range of the first gaussian variogram
+#' @param distance is the distance for the x axis
+#' @param step is the step of the graph
+
 
 
 

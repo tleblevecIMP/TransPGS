@@ -1,5 +1,11 @@
-# finding the thresholds for a truncation rule with 3 facies
-# matching with the proportions with the multigaussian integral of mvtnorm
+#' finding the thresholds for a truncation rule with 3 facies
+#' matching with the proportions with the multigaussian integral of mvtnorm
+#' @param pF1 is the proportion of facies 1
+#' @param pF2 is the proportion of facies 2
+#' @param rho is the correlation between the two gaussian functions
+#' @param iterations is the number of iterations to match with the proportions
+#'
+#' @return  t2 is the trunction for the second gaussian function
 
 threshold_fitting<-function(pF1,pF2,rho,iterations){
 
