@@ -19,10 +19,7 @@ threshold_fitting<-function(pF1,pF2,rho,iterations){
     if(Obj<Obj_min){
       Obj_min=Obj
       b_fit = t2
-      pF2_fit = pF2exp
-      pF3_fit= 1-pF1-pF2_fit
     }
   }
-  t2=b_fit
-  return(t2)
+  return(b_fit)
 }
