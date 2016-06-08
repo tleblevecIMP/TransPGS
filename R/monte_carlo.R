@@ -27,17 +27,17 @@ monte_carlo<-function(ncell,n,xdim,dist_max,pF1,pF2,rho,r1,r2,shift){
 
   # for the auto transition 1
   plot(distance,t11,type="l",col="blue",main="Auto transition of facies 1",xlab="upward distance",ylab="t11(h)",xlim=c(0, dist_max),ylim=c(0.,1.2),lwd=4,cex.axis=1.5,cex.lab=1.5,cex.main=1.5)
-  nsimu_transio(n,1,1,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
+  nsimu_transio(n,1,1,ncell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
 
   # for the transition 1 2
   plot(distance,t12,type="l",col="blue",main="From facies 1 to Facies 2",xlab="upward distance",ylab="t12(h)",xlim=c(0, dist_max),ylim=c(0,0.9),lwd=4,cex.axis=1.5,cex.lab=1.5,cex.main=1.5)
-  nsimu_transio(n,1,2,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
+  nsimu_transio(n,1,2,ncell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
   # for the transition 2 1
   plot(distance,t21,type="l",col="blue",main="From Facies 2 to Facies 1",xlab="upward distance",ylab="t21(h)",xlim=c(0, dist_max),ylim=c(0,0.9),lwd=4,cex.axis=1.5,cex.lab=1.5,cex.main=1.5)
-  nsimu_transio(n,2,1,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
+  nsimu_transio(n,2,1,ncell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
   # for the auto transition 2
   plot(distance,t22,type="l",col="blue",main="Auto transition of facies 2",xlab="upward distance",ylab="t22(h)",xlim=c(0, dist_max),ylim=c(0.,1.2),lwd=4,cex.axis=1.5,cex.lab=1.5,cex.main=1.5)
-  nsimu_transio(n,2,2,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
+  nsimu_transio(n,2,2,ncell,shift_cell,a,b,rho,rho1a,model1,model2,xdim,distance)
 }
 
 
