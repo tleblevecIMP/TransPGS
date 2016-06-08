@@ -12,6 +12,7 @@ library("RGeostats")
 
 nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim, distance){
   neigh=new("neigh",ndim=2,type=0);
+  tijmean=rep(0,length(distance))
   for ( seed in 1:n){
     # simulation
     grid<-db.create(flag.grid=TRUE,x0=c(0,0),nx=c(n_cell+shift_cell,1),dx=c(xdim,1))
@@ -23,6 +24,8 @@ nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim
 
     # computing transio
     tij<-transio_1d(i,j,facies,length(distance))
+    tijmean = tijmean + tij
     lines(distance,tij)
   }
+  lines(distance,tijmean/n,col="green",lwd=2)
 }
