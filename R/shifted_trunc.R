@@ -6,7 +6,7 @@ library("binhf")
 
 shifted_trunc<-function(Y1,Y2,rho,a,b,rho1a,shift_cell){
   # Z2 computation
-  shifted_Y1<-shift(Y1,shift_cell,"right")
+  shifted_Y1<-shift(Y1,shift_cell,"left")
   Z2<-(rho/rho1a)*shifted_Y1+sqrt(1-(rho^2)/(rho1a^2))*Y2
 
   # truncation
