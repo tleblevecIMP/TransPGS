@@ -12,7 +12,7 @@ shifted_trunc<-function(Y1,Y2,rho,a,b,rho1a,shift_cell){
   # truncation
   facies<- rep(3,length=length(Y2)) # initialization with facies 3
   facies[Y1<a]<-1
-  facies[(Y1>a)&(Y2>b)]<-2
+  facies[(Y1>a)&(Z2>b)]<-2
 
   return(facies)
 }
