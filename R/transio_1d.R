@@ -1,20 +1,23 @@
 #' compute the transiograms on a vector (1D)
 #' @param i is the facies number from
 #' @param j is the facies number to
+#' @param size is the number of cells to compute the transiogram on
 
 library("binhf")
 
-transio_1d<-function(i,j,section,max_dist){
-  pFi=sum(section[section==i])/length(section)
+transio_1d<-function(i,j,section,size){
+  section_size=length(section)
+  pFi=sum(section==i)/section_size
 
   #initialization
-  tij=rep(0,max_dist+1)
-  if(i==j){tij[1]=1}
-  else {tij[1]=0}
+  if(i==j){tij=rep(1,size)}
+  else {tij=rep(0,size)}
 
-  for (h in 1:max_dist){
-    section_h=shift(section,h,"right") # shift the section of h to be able to compare the vectors afterwards
-    tij[h+1] = sum(section[section[rep(1:(max_dist-h))]==i & section_shift[rep(h:max_dist)] == j])/ ((max_dist-h)*pFi)
+  # computation
+  for (h in 1:(size-1)){
+    section_h=shift(section,h,"left") # shift the section of h to be able to compare the vectors afterwards
+    pairs = section_size -h
+    tij[h+1] = sum(section[1:pairs]==i & section_h[1:pairs] == j)/ (pairs*pFi)
   }
 
   return(tij)

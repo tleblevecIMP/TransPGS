@@ -2,22 +2,26 @@
 #'
 #'
 
-transio_pgs<-function(props,r1,r2,rho,a,b,shift,dist_max,step){
+transio_pgs<-function(props,r1,r2,rho,a,b,shift,dist_max,xdim){
 
-  t11_mod<-rep(1,dist_max)
-  t12_mod<-rep(0,dist_max)
-  t21_mod<-rep(0,dist_max)
-  t22_mod<-rep(1,dist_max)
-  distance<-rep(1,dist_max)
-  for ( h in 2:dist_max){
-    d = (h-1)/20.
-    distance[h]<-d
-    transios <- transio_pgs_h(props[1],props[2],a,b,r1,r2,rho,shift,d)
-    t11[h]<- transios[1]
-    t12[h]<- transios[2]
-    t21[h]<- transios[3]
-    t22[h]<- transios[4]
+  # initialization according to the first value of the transiogram
+  size=trunc(dist_max/xdim)
+  t11<-rep(1,size)
+  t12<-rep(0,size)
+  t21<-rep(0,size)
+  t22<-rep(1,size)
+  distance<-rep(0,size)
+  i=1
+  # the first distance is 0
+  for ( h in seq(xdim,dist_max,xdim)){
+    i =i+1
+    distance[i]<-h
+    transios <- transio_pgs_h(props[1],props[2],a,b,r1,r2,rho,shift,h)
+    t11[i]<- transios[1]
+    t12[i]<- transios[2]
+    t21[i]<- transios[3]
+    t22[i]<- transios[4]
   }
 
-  return(c(t11,t12,t21,t22,distance))
+  return(rbind(t11,t12,t21,t22,distance))
 }

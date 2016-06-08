@@ -10,7 +10,7 @@
 
 library("RGeostats")
 
-nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b_fit,rho,rho1a,model1,model2,xdim, distance){
+nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim, distance){
   neigh=new("neigh",ndim=2,type=0);
   for ( seed in 1:n){
     # simulation
@@ -18,7 +18,7 @@ nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b_fit,rho,rho1a,model1,model2,
     grid<-simtub(dbout=grid,model=model1,neigh=neigh,seed=seed,nbsimu=1)
     grid<-simtub(dbout=grid,model=model2,neigh=neigh,seed=seed,nbsimu=1)
 
-    facies<- shifted_trunc(grid[,4],grid[,5],rho,a,b_fit,rho1a,shift_cell)
+    facies<- shifted_trunc(grid[,4],grid[,5],rho,a,b,rho1a,shift_cell)
     grid<-db.add(grid,facies)
 
     # computing transio
