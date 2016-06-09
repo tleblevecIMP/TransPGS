@@ -16,8 +16,7 @@ nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim
   for ( seed in 1:n){
     # simulation
     grid<-db.create(flag.grid=TRUE,x0=c(0,0),nx=c(n_cell+shift_cell,1),dx=c(xdim,1))
-    grid<-simtub(dbout=grid,model=model1,neigh=neigh,seed=seed,nbsimu=1)
-    grid<-simtub(dbout=grid,model=model2,neigh=neigh,seed=seed,nbsimu=1)
+    grid<-simtub(dbout=grid,model=model1,neigh=neigh,seed=seed+400,nbsimu=2)
 
     facies<- shifted_trunc(grid[,4],grid[,5],rho,a,b,rho1a,shift_cell)
     grid<-db.add(grid,facies)
@@ -27,5 +26,5 @@ nsimu_transio<-function(n,i,j,n_cell,shift_cell,a,b,rho,rho1a,model1,model2,xdim
     tijmean = tijmean + tij
     lines(distance,tij)
   }
-  lines(distance,tijmean/n,col="green",lwd=2)
+  lines(distance,tijmean/n,col="red",lwd=2)
 }
