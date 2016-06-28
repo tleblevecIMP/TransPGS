@@ -3,17 +3,17 @@
 
 #' @param r1 is the range of the first gaussian variogram
 
-
+library(mvtnorm)
 
 
 
 transio_pgs_h<-function(pF1,pF2,a,b,rho1a,cor_h,rho,shift,h){
 
   rho1h = cor_h[1]
-  rho2h = ((rho^2)/(rho1a^2)) * rho1h + (1-((rho^2)/(rho1a^2))) * cor_h[2]
-  rho12h =  rho*gaussian_cov(r1,h+shift) / rho1a
-  rho21h =  rho*gaussian_cov(r1,h-shift) / rho1a
-  
+  rho2h = cor_h[2]
+  rho12h =  cor_h[3]
+  rho21h =  cor_h[4]
+
 
   t11<- pmvnorm(lower=c(-Inf,-Inf),upper=c(a,a),mean = c(0,0),sigma=matrix(c(1,rho1h,rho1h,1),2,2))/pF1
   sigma <- matrix(c(1,rho1h,rho12h,rho1h,1,rho,rho12h,rho,1),3,3)
