@@ -5,8 +5,8 @@ shifted_pgs<-function(size,dx,r1,r2,seed,rho,a,b,shift){
 
   #infering
   shift_cell = trunc(shift/dx)
-  model1<-gaussian_cova_rgeos(r1)
-  model2<-gaussian_cova_rgeos(r2)
+  model1<-gaussian_cova_rgeos(r1,1)
+  model2<-gaussian_cova_rgeos(r2,1)
   rho1a= model.eval(model1,shift,as.cov=TRUE)
 
   #simulation

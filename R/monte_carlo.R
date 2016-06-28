@@ -9,7 +9,7 @@ monte_carlo<-function(ncell,n,dx,dist_max,pF1,pF2,rho,r1,r2,shift){
   a = qnorm(pF1)
   b<-threshold_fitting(pF1,pF2,rho,1000.)
 
-  result<-transio_pgs(c(pF1,pF2),r1,r2,rho,a,b,shift,dist_max,dx)
+  result<-transio_pgs(c(pF1,pF2),r1,r2,rho,a,b,shift,dist_max,dx,1)
   t11<-result[1,]
   t12<-result[2,]
   t21<-result[3,]

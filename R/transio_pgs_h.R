@@ -1,4 +1,5 @@
 #' computing the transiograms for a distance h
+#' we use here gaussian variograms
 
 #' @param r1 is the range of the first gaussian variogram
 
@@ -6,13 +7,13 @@
 
 
 
-transio_pgs_h<-function(pF1,pF2,a,b,r1,r2,rho,shift,h){
+transio_pgs_h<-function(pF1,pF2,a,b,rho1a,cor_h,rho,shift,h){
 
-  rho1h=exp(-(h^2)/(r1^2))
-  rho2h = ((rho^2)/(rho1a^2))*rho1h+(1-((rho^2)/(rho1a^2)))*exp(-(h^2)/(r2^2))
-  rho1a = exp(-(shift^2)/(r1^2))
-  rho12h =  rho*exp(-(abs(h+shift)^2)/(r1^2)) / rho1a
-  rho21h =  rho*exp(-(abs(h-shift)^2)/(r1^2)) / rho1a
+  rho1h = cor_h[1]
+  rho2h = ((rho^2)/(rho1a^2)) * rho1h + (1-((rho^2)/(rho1a^2))) * cor_h[2]
+  rho12h =  rho*gaussian_cov(r1,h+shift) / rho1a
+  rho21h =  rho*gaussian_cov(r1,h-shift) / rho1a
+  
 
   t11<- pmvnorm(lower=c(-Inf,-Inf),upper=c(a,a),mean = c(0,0),sigma=matrix(c(1,rho1h,rho1h,1),2,2))/pF1
   sigma <- matrix(c(1,rho1h,rho12h,rho1h,1,rho,rho12h,rho,1),3,3)
