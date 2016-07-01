@@ -10,34 +10,35 @@
 vert_transio_matrix<-function(nfacies,facies,vert_length,n_vert,transio_length){
   # lets first compute the auto transition probabilities
   mat_t<-vector("list",nfacies^2)
-  size = trunc(nvert*transio_length/vert_length)
+  size = round(n_vert*transio_length/vert_length)
 
   # proportions
   p<-numeric(nfacies)
   for ( i in seq(nfacies)){
-    p[i]=mean(facies[i])
+    p[i]=mean(facies[[i]])
   }
 
   # distance
   distance = numeric(size)
   for ( h in seq(size)){
-    distance[h]= h*vert_length/nvert
+    distance[h]= h*vert_length/n_vert
   }
 
   # auto and cross transition probabilities
   for ( i in seq(nfacies)){
     for ( j in seq(nfacies)){
       tij<-numeric(size)
-      fi<-facies[i]
-      fj<-facies[j]
+      fi<-facies[[i]]
+      fj<-facies[[j]]
       for ( h in seq(size)){
         for ( z in seq(nrow(fi)-h)){
-          tij[h]<-tij+mean(fi[z,]*fj[z+h,])
+          tij[h]<-tij[h]+mean(fi[z,]*fj[z+h,])
         }
         tij[h] = tij[h] / (nrow(fi)-h)
       }
-      mat_t[(i-1)*nfacies+j]<-tij/p[i] # we don t forget to divide by the proportion
+      mat_t[[(i-1)*nfacies+j]]<-tij/p[i] # we don t forget to divide by the proportion
     }
   }
+  mat_t <- do.call(rbind,mat_t)
   plot_transio(mat_t,distance)
 }
