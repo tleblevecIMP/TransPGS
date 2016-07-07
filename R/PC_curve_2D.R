@@ -16,22 +16,31 @@ PC_curve_2D<-function(images,length,lat){
   }
   else {size = ncol(facies[[1]]) }
 
-  p=numeric(size)
+  p=matrix(rep(0,nfacies*size),size,3)
   for ( i in seq(nfacies)){
     fi<-facies[[i]]
     if (lat ==0){
       for (ligne in seq(size)){
-        # we plot the cumulative facies proportions
-        p[ligne] = p[ligne]+ mean(fi[ligne,])
+        p[ligne,i] =  mean(fi[ligne,])
       }
     }
     else{
       for (col in seq(size)){
-        # we plot the cumulative facies proportions
-        p[col] = p[col]+ mean(fi[,col])
+        p[col,i] = mean(fi[,col])
       }
     }
-    lines(p,seq(size)*length/size,col=i)
   }
-  legend(0.8,length*0.8,images,lty=rep(1,nfacies),col=seq(nfacies))
+
+  p_cum<-rep(0,size)
+  # correction for the non assigned values
+  for ( line in seq(size)){
+    p[line,]<-prop_correction_NA(p[line,])
+  }
+
+  for ( i in seq(nfacies-1)){
+    p_cum <- p_cum +p[,i]
+    lines(p_cum,seq(size)*length/size,col=i)
+  }
+
+  legend(0.8,length*0.8,images[1:(nfacies-1)],lty=rep(1,nfacies-1),col=seq(nfacies-1))
 }

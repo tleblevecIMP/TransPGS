@@ -10,7 +10,7 @@ Proportion_2D<-function(images){
     prop[i]=mean(facies[[i]])
   }
   # correction for the non assigned values:
-  c = 1/sum(prop)
+  prop <- prop_correction_NA(prop)
 
-  return (c * prop)
+  return ( prop)
 }
