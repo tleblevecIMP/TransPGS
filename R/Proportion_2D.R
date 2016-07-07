@@ -6,8 +6,11 @@ Proportion_2D<-function(images){
   nfacies <- length(images)
   facies <- reading_facies_images(images)
   prop<-rep(0,nfacies)
-  for( i in seq(facies)){
+  for( i in seq(nfacies)){
     prop[i]=mean(facies[[i]])
   }
+  # correction for the non assigned values:
+  c = 1/sum(prop)
 
+  return (c * prop)
 }
