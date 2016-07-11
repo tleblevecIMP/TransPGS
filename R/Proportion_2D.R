@@ -1,10 +1,8 @@
-#' Compute the proportions from a set of 2D images describing facies
-#' The proportion is not straightforward because some values can be non assigned
-#' Therefore all the facies are required and a correction is applied for the no value cells
+#'Compute the proportions of a 2d dataset coded in a list of matrix
+#'
 
-Proportion_2D<-function(images){
-  nfacies <- length(images)
-  facies <- reading_facies_images(images)
+
+proportion_2D<-function(facies,nfacies){
   prop<-rep(0,nfacies)
   for( i in seq(nfacies)){
     prop[i]=mean(facies[[i]])
