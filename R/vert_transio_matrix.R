@@ -10,7 +10,7 @@
 vert_transio_matrix<-function(nfacies,facies,vert_length,n_vert,transio_length){
 
   mat_t<-vector("list",nfacies^2)
-  size = pixels_distance(n_vert,vert_length,transio_lengt)
+  size = pixels_distance(n_vert,vert_length,transio_length)
   p<-proportion_2D(facies,nfacies) #proportion will be useful for the computation of the transition prob
   distance<-distance_vector(size,vert_length,n_vert)
 
