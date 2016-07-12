@@ -17,26 +17,20 @@ PC_curve_2D<-function(images,length,lat){
   else {size = ncol(facies[[1]]) }
 
   p=matrix(rep(0,nfacies*size),size,3)
-  for ( i in seq(nfacies)){
-    fi<-facies[[i]]
+  for ( fi in facies){
     if (lat ==0){
       for (ligne in seq(size)){
-        p[ligne,i] =  mean(fi[ligne,])
+        p[ligne,i] =  mean(fi[ligne,],na.rm=TRUE)
       }
     }
     else{
       for (col in seq(size)){
-        p[col,i] = mean(fi[,col])
+        p[col,i] = mean(fi[,col],na.rm=TRUE)
       }
     }
   }
 
   p_cum<-rep(0,size)
-  # correction for the non assigned values
-  for ( line in seq(size)){
-    p[line,]<-prop_correction_NA(p[line,])
-  }
-
   for ( i in seq(nfacies-1)){
     p_cum <- p_cum +p[,i]
     lines(p_cum,seq(size)*length/size,col=i)
