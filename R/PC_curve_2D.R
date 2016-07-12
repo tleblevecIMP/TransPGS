@@ -16,7 +16,7 @@ PC_curve_2D<-function(images,length,lat){
   }
   else {size = ncol(facies[[1]]) }
 
-  p=matrix(rep(0,nfacies*size),size,nfacies-1)
+  p=matrix(rep(0,(nfacies-1)*size),size,nfacies-1)
   for ( i in seq(nfacies-1)){
     f<-facies[[i]]
     if (lat ==0){
