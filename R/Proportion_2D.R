@@ -5,7 +5,7 @@
 proportion_2D<-function(facies,nfacies){
   prop<-rep(0,nfacies)
   for( i in seq(nfacies)){
-    prop[i]=mean(facies[[i]])
+    prop[i]=mean(facies[[i]],na.rm=TRUE)
   }
   # correction for the non assigned values:
   prop <- prop_correction_NA(prop)
