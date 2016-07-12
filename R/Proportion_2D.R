@@ -7,5 +7,6 @@ proportion_2D<-function(facies,nfacies){
   for( i in seq(nfacies)){
     prop[i]=mean(facies[[i]],na.rm=TRUE)
   }
+  prop<-prop_correction_NA(prop)
   return ( prop)
 }
