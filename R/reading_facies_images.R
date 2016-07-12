@@ -12,6 +12,7 @@ reading_facies_images<-function(images){
     f[f != 0]<-1
     facies[[i]]<-f
   }
+  facies <- assigned_NA(facies)
 
   return(facies)
 }
