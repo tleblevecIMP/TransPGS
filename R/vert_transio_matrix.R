@@ -32,4 +32,5 @@ vert_transio_matrix<-function(nfacies,facies,vert_length,n_vert,transio_length){
 
   mat_t <- do.call(rbind,mat_t)
   plot_transio(mat_t,distance,nfacies)
+  return(mat_t)
 }
