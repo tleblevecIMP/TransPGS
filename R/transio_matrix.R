@@ -25,6 +25,15 @@ vert_transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertica
           for ( z in seq(nrow(fi)-h)){
             tij[h]<-tij[h]+mean(fi[z,]*fj[z+h,],na.rm=TRUE)
           }
+          tij[h] = tij[h] / (nrow(fi)-h)
+        }
+      }
+      if (vertical==0){
+        for ( h in seq(size)){
+          for ( x in seq(ncol(fi)-h)){
+            tij[h]<-tij[h]+mean(fi[,x]*fj[,x+h],na.rm=TRUE)
+          }
+          tij[h] = tij[h] / (ncol(fi)-h)
         }
       }
 
