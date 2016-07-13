@@ -39,5 +39,5 @@ PC_curve_2D<-function(images,length,lat){
 
   legend(0.8,length*0.8,images[1:(nfacies-1)],lty=rep(1,nfacies-1),col=seq(nfacies-1))
 
-  return(p_cum)
+  return(p)
 }
