@@ -7,7 +7,7 @@
 #' it should be lower than a quarter of the vert_length
 
 
-vert_transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
+transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
 
   mat_t<-vector("list",(nfacies)^2)
   size = pixels_distance(n_pix,length,transio_length)
@@ -20,6 +20,7 @@ vert_transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertica
       tij<-numeric(size)
       fi<-facies[[i]]
       fj<-facies[[j]]
+
       if (vertical ==1 ){
         for ( h in seq(size)){
           for ( z in seq(nrow(fi)-h)){
