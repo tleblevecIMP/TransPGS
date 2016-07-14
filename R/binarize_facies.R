@@ -2,7 +2,7 @@
 #'
 
 binarize_facies<-function(facies,i){
-  facies[facies==i]<-1
   facies[facies != i]<-0
+  facies[facies==i]<-1
   return(facies)
 }

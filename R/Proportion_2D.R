@@ -5,8 +5,8 @@
 proportion_2D<-function(facies,nfacies){
   prop<-rep(0,nfacies)
   for( i in seq(nfacies)){
-    facies<-binarize_facies(facies,i)
-    prop[i]=mean(facies,na.rm=TRUE)
+    fi<-binarize_facies(facies,i)
+    prop[i]=mean(fi,na.rm=TRUE)
   }
   #prop<-prop_correction_NA(prop)
   return ( prop)
