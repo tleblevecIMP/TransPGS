@@ -18,8 +18,8 @@ transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
   for ( i in seq(nfacies)){
     for ( j in seq(nfacies)){
       tij<-numeric(size)
-      fi<-facies[[i]]
-      fj<-facies[[j]]
+      fi<-binarize_facies(facies,i)
+      fj<-binarize_facies(facies,j)
 
       if (vertical ==1 ){
         for ( h in seq(size)){

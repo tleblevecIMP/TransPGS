@@ -12,13 +12,13 @@ PC_curve_2D<-function(images,length,lat){
   title('proportion curve')
   facies <- reading_facies_images(images)
   if( lat ==0 ){
-    size = nrow(facies[[1]])
+    size = nrow(facies)
   }
-  else {size = ncol(facies[[1]]) }
+  else {size = ncol(facies) }
 
   p=matrix(rep(0,(nfacies)*size),size,nfacies)
   for ( i in seq(nfacies)){
-    f<-facies[[i]]
+    f<-binarize_facies(facies,i)
     if (lat ==0){
       for (ligne in seq(size)){
         p[ligne,i] =  mean(f[ligne,],na.rm=TRUE)
