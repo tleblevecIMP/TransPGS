@@ -4,7 +4,7 @@
 library(tcltk2)
 library("RGeostats")
 
-gaussian_transio_interact<-function(props,dist,dx){
+gaussian_transio_interact<-function(props,dist,dx,data){
   pF1=props[1]
   pF2 = props[2]
   pF3=1-pF1-pF2
@@ -67,7 +67,7 @@ gaussian_transio_interact<-function(props,dist,dx){
     rho1a=gaussian_cov(r1,shift)
 
     if (rho<=rho1a){
-      plot_transio(result[1:9,],result[10,],3)
+      plot_transio_data_mod(result[1:9,],result[10,],data,3)
     }
   }
 
