@@ -6,7 +6,7 @@
 plot_transio<-function(transios,distance,nfacies){
 
 
-  layout(matrix(seq(length(transios)),nfacies,nfacies,byrow=TRUE))
+  layout(matrix(seq(nrow(transios)),nfacies,nfacies,byrow=TRUE))
 
   for ( i in seq(nrow(transios))){
     plot(distance,transios[i,],col="blue",type="l",ylim=c(0,1),ylab='transition probability',lwd=2)

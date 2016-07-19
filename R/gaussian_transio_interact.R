@@ -18,8 +18,6 @@ gaussian_transio_interact<-function(props,dist,dx){
   r2<-0.2
   rho1a <- gaussian_cov(r1,shift)
 
-  hello
-
   windows() # windows on which the plots will be done
 
   #sliders
@@ -69,7 +67,7 @@ gaussian_transio_interact<-function(props,dist,dx){
     rho1a=gaussian_cov(r1,shift)
 
     if (rho<=rho1a){
-      plot_transio(result[1:4,],result[5,],2)
+      plot_transio(result[1:9,],result[10,],3)
     }
   }
 
