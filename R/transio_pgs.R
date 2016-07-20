@@ -37,7 +37,7 @@ transio_pgs<-function(props,r1,r2,rho,a,b,shift,dist_max,dx){
     t23[i]<-1-t21[i]-t22[i]
     t31[i]<-(pF1-t11[i]*pF1-t21[i]*pF2)/pF3
     t32[i]<-(pF2-t12[i]*pF1-t22[i]*pF2)/pF3
-    t33[i]<-(pF3-t13[i]*pF1-t23[i]*pF3)/pF3
+    t33[i]<-(pF3-t13[i]*pF1-t23[i]*pF2)/pF3
   }
 
   return(rbind(t11,t12,t13,t21,t22,t23,t31,t32,t33,distance))
