@@ -4,7 +4,7 @@
 library(tcltk2)
 library("RGeostats")
 
-gaussian_transio_interact<-function(props,dist,dx,data){
+gaussian_transio_interact<-function(props,dist,dx,dy,data,nx,ny){
   pF1=props[1]
   pF2 = props[2]
   pF3=1-pF1-pF2
@@ -71,6 +71,33 @@ gaussian_transio_interact<-function(props,dist,dx,data){
     }
   }
 
+  seed =0
+  simulation <- function(...){
+    #sliders
+    valuerho <- floor(as.double(tclvalue(sliderValuerho))*1000)/1000.
+    valuerange1 <- floor(as.double(tclvalue(sliderValuerange1))*100)/100.
+    valuerange2 <- floor(as.double(tclvalue(sliderValuerange2))*100)/100.
+    valueshift <- floor(as.double(tclvalue(sliderValueshift))*100)/100.
+    # the value parameters are going to be changed by another function
+    newrho <- valuerho
+    r1<-valuerange1
+    r2<-valuerange2
+    shift<-valueshift
+    labelrho <- sprintf("rho: %s", valuerho)
+    labelrange1 <- sprintf("range of Y1: %s", valuerange1)
+    labelrange2 <- sprintf("range of Y2: %s", valuerange2)
+    labelshift <- sprintf("shift: %s", valueshift)
+    tkconfigure(win1$env$labelrho, text = labelrho)
+    tkconfigure(win1$env$labelrange1, text = labelrange1)
+    tkconfigure(win1$env$labelrange2, text = labelrange2)
+    tkconfigure(win1$env$labelshift, text = labelshift)
+
+    seed=seed+1
+    b<-threshold_fitting(pF1,pF2,rho,20)
+    grid<-shifted_pgs(nx,ny,dx,dy,r1,r2,seed,newrho,a,b,0)
+    plot(grid)
+  }
+
   tkgrid(win1$env$labelrho, padx = 0.1, pady = c(10, 5))
   win1$env$sliderrho <- tk2scale(win1, from = -0.99, to = 0.99,
                                  variable = sliderValuerho, orient = "horizontal", length = 500,
@@ -97,7 +124,7 @@ gaussian_transio_interact<-function(props,dist,dx,data){
                                    command = onChange)
   tkgrid(win1$env$slidershift, padx = 0.1, pady = c(5, 10))
 
-  win1$env$butOK <-tk2button(win1, text = "OK", width = -6, command = onChange)
+  win1$env$butOK <-tk2button(win1, text = "OK", width = -6, command = simulation)
   tkgrid(win1$env$butOK, padx = 10, pady = c(5, 10))
 
 }
