@@ -1,12 +1,12 @@
 #' performs a shifted pgs with rgeostat
 #'
 
-shifted_pgs<-function(nx,ny,dx,dy,r1,r2,seed,rho,a,b,shift){
+shifted_pgs<-function(nx,ny,dx,dy,r1,an1,r2,an2,seed,rho,a,b,shift){
 
   #infering
   shift_cell = trunc(shift/dx)
-  model1<-gaussian_cova_rgeos(r1)
-  model2<-gaussian_cova_rgeos(r2)
+  model1<-gaussian_cova_rgeos(r1,an1)
+  model2<-gaussian_cova_rgeos(r2,an2)
   rho1a= model.eval(model1,shift,as.cov=TRUE)
 
   #simulation
