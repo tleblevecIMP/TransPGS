@@ -1,6 +1,6 @@
-#' gaussian interact for four facies
+#' gaussian interact for four facies with three gaussian functions
 #'
-gaussian_transio_interact_1D_4<-function(props,dist_vert,dx){
+gaussian_transio_interact_4F_3G<-function(props,dist_vert,dx){
   windows()
   pF1=props[1]
   pF2 = props[2]
@@ -8,12 +8,12 @@ gaussian_transio_interact_1D_4<-function(props,dist_vert,dx){
   pF4 = 1-pF1-pF2-pF3
 
   # this values are just for the initialization
-  rho = 0
-  t = threshold_fitting_4(pF1,pF2,pF3,rho,20)
-  shift=0
+  rho12 = rho23 = rho13=0
+  shift12 = shift23 = shift13 =0
+  t = threshold_fitting_4F_3G(pF1,pF2,pF3,c(rho12,rho23,rho13),20)
   r1<-0.6
   r2<-0.2
-  rho1a <- gaussian_cov(r1,shift)
+  r3<-0.5
 
   #sliders
   win1 <- tktoplevel()
@@ -51,14 +51,11 @@ gaussian_transio_interact_1D_4<-function(props,dist_vert,dx){
     tkconfigure(win1$env$labelrange2, text = labelrange2)
     tkconfigure(win1$env$labelshift, text = labelshift)
 
-    # b is the only parameter that is not defined by the user
-    # is different when rho changes
-    if ( newrho != rho){
-      rho = newrho
-      t<-threshold_fitting_4(pF1,pF2,pF3,rho,20)
-    }
+    truncs<- threshold_fitting_4F_3G(pF1,pF2,pF3,rhos,20)
+    lambdas<-linear_model_co_region(ranges,rhos,shifts)
 
-    result_vert<-transio_pgs_4(props,r1,r2,rho,t[1],t[2],shift,dist_vert,dx)
+
+    result_vert<-transio_pgs_4F_3G(props,truncs,ranges,lambdas,dist_vert,dx)
     rho1a=gaussian_cov(r1,shift)
 
     if (rho<=rho1a){
