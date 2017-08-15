@@ -4,7 +4,7 @@
 library(tcltk2)
 library("RGeostats")
 
-gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,data_vert,data_hor,nx,ny){
+gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
   pF1=props[1]
   pF2 = props[2]
   pF3=1-pF1-pF2
