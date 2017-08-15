@@ -1,3 +1,5 @@
+#a 1d simulation with interactive parameters
+
 gaussian_transio_interact_1D<-function(props,dist_vert,dx){
   windows()
   pF1=props[1]
