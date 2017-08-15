@@ -9,5 +9,6 @@ vertical_transio_analysis_2D<-function(images,vert_length,transio_length){
 
   windows()
   facies <- reading_facies_images(images)
-  vert_transio_matrix(length(images),facies,vert_length,nrow(facies[[1]]),transio_length)
+  mat_t<-transio_matrix(length(images),facies,vert_length,nrow(facies),transio_length,1)
+  return(mat_t)
 }
