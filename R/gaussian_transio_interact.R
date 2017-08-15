@@ -1,10 +1,12 @@
 #' compute the transiograms from the gaussian coregionalization model
-#' @param dist is the distance at which we want to compute transiograms
+#' @param dist_vert is the vertical distance at the transiogram is displayed
+#' @param dist_hor is the horizontal distance at the transiogram is displayed
 
 library(tcltk2)
 library("RGeostats")
 
 gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
+  windows()
   pF1=props[1]
   pF2 = props[2]
   pF3=1-pF1-pF2
