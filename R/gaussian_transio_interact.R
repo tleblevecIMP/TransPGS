@@ -80,10 +80,18 @@ gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,data_vert,dat
     rho1a=gaussian_cov(r1,shift)
 
     if (rho<=rho1a){
-      plot_transio_data_mod(result_vert[1:9,],result_vert[10,],data_vert,3)
-      dev.set(dev.next())
-      plot_transio_data_mod(result_hor[1:9,],result_hor[10,],data_hor,3)
-      dev.set(dev.next())
+      #plot_transio_data_mod(result_vert[1:9,],result_vert[10,],data_vert,3)
+      layout(matrix(c(1,2,3,4,5,6,7,8,9),3,3,byrow=TRUE))
+      for( i in seq(9)){
+        plot(result_vert[10,],result_vert[i,],col="black",type="l",ylim=c(0,1),ylab='transition probability',lwd=2)
+      }
+      #dev.set(dev.next())
+      #layout(matrix(c(1,2,3,4,5,6,7,8,9),3,3,byrow=TRUE))
+      #for( i in seq(9)){
+      #  plot(result_hor[10,],result_hor[i,],col="black",type="l",ylim=c(0,1),ylab='transition probability',lwd=2)
+      #}
+      #plot_transio_data_mod(result_hor[1:9,],result_hor[10,],data_hor,3)
+      #dev.set(dev.next())
     }
   }
 
