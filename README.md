@@ -1,5 +1,5 @@
 # TransPGS
-From multi gaussian simulations to indicator transiograms 
+The aim of this package is to simulate facies fields in two dimensions with the Pluri-Gaussian simulation method constrained by Markov chains transiograms.
 
 
 Copyright (c) [2016] [Thomas Le Blevec]
