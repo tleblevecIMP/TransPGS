@@ -1,6 +1,6 @@
 #' compute the transiograms from the gaussian coregionalization model
-#' @param dist_vert is the vertical distance at the transiogram is displayed
-#' @param dist_hor is the horizontal distance at the transiogram is displayed
+#' @param dist_vert is the vertical distance the transiogram displays
+#' @param dist_hor is the horizontal distance the transiogram displays
 
 library(tcltk2)
 library("RGeostats")
