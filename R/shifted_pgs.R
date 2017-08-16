@@ -16,3 +16,17 @@ shifted_pgs<-function(nx,ny,dx,dy,r1,an1,r2,an2,seed,rho,a,b,shift){
 
   return(grid)
 }
+
+shifted_pgs2<-function(nx,ny,dx,dy,r1,an1,r2,an2,seed,rho,a,b,shift){
+
+  #infering
+  shift_cell = trunc(shift/dx)
+  rho1a= exp(-(shift/r1)^2)
+
+  #simulation
+  grid1<-gaussian_field(nx+shift_cell,ny,dx,dy,r1,an1,seed)
+  grid2<-gaussian_field(nx+shift_cell,ny,dx,dy,r2,an2,seed)
+  facies<- shifted_trunc2(grid[,4],grid[,5],rho,a,b,rho1a,shift_cell)
+
+  return(facies)
+}
