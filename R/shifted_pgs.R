@@ -26,7 +26,7 @@ shifted_pgs2<-function(nx,ny,dx,dy,r1,an1,r2,an2,seed,rho,a,b,shift){
   #simulation
   grid1<-gaussian_field(nx+shift_cell,ny,dx,dy,r1,an1,seed)
   grid2<-gaussian_field(nx+shift_cell,ny,dx,dy,r2,an2,seed)
-  facies<- shifted_trunc2(grid[,4],grid[,5],rho,a,b,rho1a,shift_cell)
+  facies<- shifted_trunc2(grid1,grid2,rho,a,b,rho1a,shift_cell)
 
   return(facies)
 }

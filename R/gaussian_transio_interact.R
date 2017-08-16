@@ -129,7 +129,9 @@ gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
     seed=seed+1
     b<-threshold_fitting(pF1,pF2,rho,20)
     grid<-shifted_pgs2(nx,ny,dx,dy,r1,an1,r2,an2,seed,newrho,a,b,0)
-    plot(grid)
+    #plot(grid)
+    layout(matrix(c(1),1,1,byrow=TRUE))
+    image(t(grid))
   }
 
   tkgrid(win1$env$labelrho, padx = 0.1, pady = c(10, 5))
