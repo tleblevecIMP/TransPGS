@@ -1,6 +1,6 @@
 #' reading images with facies
 #' the files must be .bmp with values 0 and 255
-#'
+#' @param images is a list of matrices representing individual facies
 
 library("bmp")
 
