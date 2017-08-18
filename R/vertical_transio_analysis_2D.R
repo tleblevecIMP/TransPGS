@@ -3,7 +3,6 @@
 #' the length of the list correponds to the number of facies
 #'
 library("bmp")
-library("RGeostats")
 
 vertical_transio_analysis_2D<-function(images,vert_length,transio_length){
 
