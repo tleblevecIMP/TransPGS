@@ -19,7 +19,7 @@ shifted_pgs2d<-function(nx,ny,dx,dy,r1,an1,r2,an2,seed,rho,a,b,shift){
 shifted_pgs1d<-function(nx,dx,r1,r2,seed,rho,a,b,shift){
 
   #infering
-  shift_cell = trunc(shift/dx)
+  if (shift!=0){shift_cell = trunc(shift/dx)} else {shift_cell=0}
   rho1a= exp(-(shift/r1)^2)
 
   #simulation
