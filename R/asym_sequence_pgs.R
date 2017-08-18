@@ -5,7 +5,7 @@
 asym_sequence_pgs<-function(size,dx,rho,r1,r2){
 
   shift = sqrt(-(r1^2)*log(rho))
-  grid<-shifted_pgs(size,dx,r1,r2,seed,rho,0,0,shift)
-  plot(grid)
+  grid<-shifted_pgs1d(size,dx,r1,r2,seed,rho,0,0,shift)
+  image(grid)
 
 }
