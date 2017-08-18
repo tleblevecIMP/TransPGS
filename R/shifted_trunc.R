@@ -24,6 +24,7 @@ shifted_trunc1d<-function(Y1,Y2,rho,a,b,rho1a,shift_cell){
   # Z2 computation
   shifted_Y1<-shift(Y1,shift_cell,"left")
   Z2<-(rho/rho1a)*shifted_Y1+sqrt(1-(rho^2)/(rho1a^2))*Y2
+  print(rho)
   print(rho1a)
   # truncation
   facies<- rep(3,length(Y1))# initialization with facies 3
