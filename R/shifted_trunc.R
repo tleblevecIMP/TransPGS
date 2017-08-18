@@ -4,19 +4,6 @@
 
 library("binhf")
 
-shifted_trunc<-function(Y1,Y2,rho,a,b,rho1a,shift_cell){
-  # Z2 computation
-  shifted_Y1<-shift(Y1,shift_cell,"left")
-  Z2<-(rho/rho1a)*shifted_Y1+sqrt(1-(rho^2)/(rho1a^2))*Y2
-
-  # truncation
-  facies<- rep(3,length=length(Y2)) # initialization with facies 3
-  facies[Y1<a]<-1
-  facies[(Y1>a)&(Z2>b)]<-2
-
-  return(facies)
-}
-
 shifted_trunc2<-function(Y1,Y2,rho,a,b,rho1a,shift_cell){
   # Z2 computation
   Z2<-Y2

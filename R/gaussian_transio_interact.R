@@ -3,7 +3,6 @@
 #' @param dist_hor is the horizontal distance the transiogram displays
 
 library(tcltk2)
-library("RGeostats")
 
 gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
   windows()
