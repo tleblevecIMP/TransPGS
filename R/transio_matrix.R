@@ -13,6 +13,7 @@ transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
   p<-proportion_2D(facies,nfacies) #proportion will be useful for the computation of the transition prob
   distance<-distance_vector(size,length,n_pix)
 
+  print(facies)
   # auto and cross transition probabilities computation
   for ( i in seq(nfacies)){
     for ( j in seq(nfacies)){

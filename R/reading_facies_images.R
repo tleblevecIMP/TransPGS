@@ -5,7 +5,7 @@
 library("bmp")
 
 reading_facies_logs<-function(filename,nfacies){
-  data<-read.table(system.file("extdata", filename, package = "TransPGS"))
+  facies<-data.matrix(read.table(system.file("extdata", filename, package = "TransPGS")))
   return(facies)
 }
 

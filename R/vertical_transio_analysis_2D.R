@@ -4,6 +4,14 @@
 #'
 library("bmp")
 
+transio_analysis_log<-function(filename,nfacies,length,transio_length){
+  windows()
+  facies <- reading_facies_logs(filename,nfacies)
+  n_pix = nrow(facies)
+  mat_t<-transio_matrix(nfacies,facies,length,n_pix,transio_length,1)
+  return(mat_t)
+}
+
 vertical_transio_analysis_2D<-function(images,vert_length,transio_length){
 
   windows()
