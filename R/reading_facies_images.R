@@ -4,6 +4,11 @@
 
 library("bmp")
 
+reading_facies_logs<-function(filename){
+  facies<-read.csv(system.file("extdata", log, package = "TransPGS"))
+  return(facies)
+}
+
 reading_facies_images<-function(images){
 
   dimension<-dim(read.bmp(system.file("extdata", images[1], package = "TransPGS")))
