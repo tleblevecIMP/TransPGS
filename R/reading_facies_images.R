@@ -4,8 +4,8 @@
 
 library("bmp")
 
-reading_facies_logs<-function(filename){
-  facies<-read.csv(system.file("extdata", log, package = "TransPGS"))
+reading_facies_logs<-function(filename,nfacies){
+  data<-read.table(system.file("extdata", filename, package = "TransPGS"))
   return(facies)
 }
 

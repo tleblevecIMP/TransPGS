@@ -1,8 +1,7 @@
 #' computes the transiogram matrix on a 2D section in the lateral or vertical direction
-#' @param facies is a list of matrix of 1 and 0 expressing location of each facies
 #' each element of the matrix represents a location on the 2D section
 #' @param length is the size of the study in real dimensions in the desired direction
-#' @param n_pix is the number of cells in the vertical dimension
+#' @param n_pix is the number of cells in the desired direction
 #' @param transio_length is the length of the transiogram in real dimension
 #' it should be lower than a quarter of the vert_length
 
