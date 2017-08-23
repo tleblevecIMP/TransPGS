@@ -2,7 +2,6 @@
 #' lat is a binary defining is the user computes the lateral proportion curves
 #'
 #' library("bmp")
-library("RGeostats")
 
 PC_curve_2D<-function(images,length,lat){
 
