@@ -166,7 +166,7 @@ gaussian_transio_interact<-function(props,transio_expe,dx,dy,nx,ny){
 
 
   tkgrid(win1$env$labelshift, padx = 0.1, pady = c(10, 5))
-  win1$env$slidershift <- tk2scale(win1, from = -2, to = 2,
+  win1$env$slidershift <- tk2scale(win1, from = -rho1a, to = rho1a,
                                    variable = sliderValueshift, orient = "horizontal", length = 500,
                                    command = onChange)
   tkgrid(win1$env$slidershift, padx = 0.1, pady = c(5, 10))
