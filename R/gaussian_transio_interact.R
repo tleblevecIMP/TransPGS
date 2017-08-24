@@ -1,14 +1,13 @@
 #' compute the transiograms from the gaussian coregionalization model
-#' @param dist_vert is the vertical distance the transiogram displays
-#' @param dist_hor is the horizontal distance the transiogram displays
 
 library(tcltk2)
 
-gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
+gaussian_transio_interact<-function(props,transio_expe,dx,dy,nx,ny){
+  dist_tr = length(transio_expe[1,])*dx
   windows()
   pF1=props[1]
   pF2 = props[2]
-  pF3=1-pF1-pF2
+  pF3=props[3]
 
   # this values are just for the initialization
   a= qnorm(pF1)
@@ -76,8 +75,8 @@ gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
       b<-threshold_fitting(pF1,pF2,rho,20)
     }
 
-    result_vert<-transio_pgs(props,r1,r2,rho,a,b,shift,dist_vert,dx)
-    result_hor<-transio_pgs(props,r1*an1,r2*an2,rho,a,b,shift,dist_hor,dy)
+    result_vert<-transio_pgs(props,r1,r2,rho,a,b,shift,dist_tr,dx)
+    #result_hor<-transio_pgs(props,r1*an1,r2*an2,rho,a,b,shift,dist_hor,dy)
     rho1a=gaussian_cov(r1,shift)
 
     if (rho<=rho1a){
@@ -85,6 +84,7 @@ gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
       layout(matrix(c(1,2,3,4,5,6,7,8,9),3,3,byrow=TRUE))
       for( i in seq(9)){
         plot(result_vert[10,],result_vert[i,],col="black",type="l",ylim=c(0,1),ylab='transition probability',lwd=2)
+        points(dx*(1:length(transio_expe[i,])),transio_expe[i,])
       }
       #dev.set(dev.next())
       #layout(matrix(c(1,2,3,4,5,6,7,8,9),3,3,byrow=TRUE))
@@ -140,7 +140,7 @@ gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
   tkgrid(win1$env$sliderrho, padx = 0.1, pady = c(5, 10))
 
   tkgrid(win1$env$labelrange1, padx = 0.1, pady = c(10, 5))
-  win1$env$sliderrange1 <- tk2scale(win1, from = 0.01, to = 2,
+  win1$env$sliderrange1 <- tk2scale(win1, from = dx, to = dist_tr,
                                     variable = sliderValuerange1, orient = "horizontal", length = 500,
                                     command = onChange)
   tkgrid(win1$env$sliderrange1, padx = 0.1, pady = c(5, 10))
@@ -153,7 +153,7 @@ gaussian_transio_interact<-function(props,dist_vert,dist_hor,dx,dy,nx,ny){
 
 
   tkgrid(win1$env$labelrange2, padx = 0.1, pady = c(10, 5))
-  win1$env$sliderrange2 <- tk2scale(win1, from = 0.01, to = 2,
+  win1$env$sliderrange2 <- tk2scale(win1, from = dx, to = dist_tr,
                                     variable = sliderValuerange2, orient = "horizontal", length = 500,
                                     command = onChange)
   tkgrid(win1$env$sliderrange2, padx = 0.1, pady = c(5, 10))
