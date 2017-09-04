@@ -1,7 +1,7 @@
 # perform the different step for a conditional simulation in three dimensions
 
 condsim3d<-function(props,grid,r1v,r1hx,r1hy,f,r2v,r2hx,r2hy,f2,rho,shift,N,dz,dx,dy,nz,nx,ny){
-  Y1<-sim_spec(r1v,r1hx,r1hy,f,N,dz,dx,dy,nz,nx,ny)
+  Y1<-sim3d(r1v,r1hx,r1hy,f,N,dz,dx,dy,nz,nx,ny)
   grid1 <- binarize_facies(grid,1)
   q1=qnorm(props[1])
   Y1well<-gibbs_sampling_mix(grid1,q1,dz,dx,dy,r1v,r1hx,r1hy,f,50)
@@ -16,7 +16,7 @@ condsim3d<-function(props,grid,r1v,r1hx,r1hy,f,r2v,r2hx,r2hy,f2,rho,shift,N,dz,d
   grid2[grid ==1]=Inf
   grid2[grid ==2]=1
   grid2[grid ==3]=0
-  Y2<-sim_spec(r2v,r2hx,r2hy,f2,N,dz,dx,dy,nz,nx,ny)
+  Y2<-sim3d(r2v,r2hx,r2hy,f2,N,dz,dx,dy,nz,nx,ny)
 
   # computing the thresholds according to the first simulation
   q2=threshold_fitting(props[1],props2,rho,100)
