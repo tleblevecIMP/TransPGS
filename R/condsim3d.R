@@ -19,7 +19,7 @@ condsim3d<-function(props,grid,r1v,r1hx,r1hy,f,r2v,r2hx,r2hy,f2,rho,shift,N,dz,d
   Y2<-sim3d(r2v,r2hx,r2hy,f2,N,dz,dx,dy,nz,nx,ny)
 
   # computing the thresholds according to the first simulation
-  q2=threshold_fitting(props[1],props2,rho,100)
+  q2=threshold_fitting(props[1],props[2],rho,100)
   q2map<- grid
   q2map[grid==2] =q2map[grid==3]= q2
   q2map[grid==1]=Inf
@@ -39,14 +39,16 @@ condsim3d<-function(props,grid,r1v,r1hx,r1hy,f,r2v,r2hx,r2hy,f2,rho,shift,N,dz,d
   e2well <- Y2well - Y2
   e2<-dual_krig_surf(e2well,r2hx,r2hy,nx,ny)
   Y2c<-e2+Y2
+  Z2c<-Y2c
   for ( z in 1:(nz-shift/dz)){
     Z2c[z,,]=Y2c[z,,]*sqrt(1-(rho^2)/(rho1a^2))+Y1c[z+shift/dz,,]*(rho)/(rho1a)
   }
 
   #truncation
-  field<-Z2c
-  field[Z2c<q2]=1
-  field[Z2c>q2]=0
+  gridsim<-grid
+  gridsim[Y1c<q1]=1
+  gridsim[Y1c>q1 & Z2c<q2]=2
+  gridsim[Y1c>q1 & Z2c >q2 ]=3
 
-  return(field)
+  return(gridsim)
 }

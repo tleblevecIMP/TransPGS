@@ -198,3 +198,19 @@ dual_krig_surf<-function(errorwell,rhx,rhy,dhx,dhy){
 
   return(errorfield)
 }
+
+cov_data_surf<-function(data_loc,dhx,dhy,rhx,rhy){
+  n=nrow(data_loc)
+  dist_hx <-dist_hy <- matrix(0,n,n)
+  for ( i in 1:(n-1)){
+    for (j in (i+1):n ){
+      dist_hx[i,j]=dist_hx[j,i]=abs(data_loc[i,1]-data_loc[j,1])*dhx
+      dist_hy[i,j]=dist_hy[j,i]=abs(data_loc[i,2]-data_loc[j,2])*dhy
+    }
+  }
+
+  cov_h=exp(-sqrt( ((dist_hx/rhx)^2) + ((dist_hy/rhy)^2) ))
+
+
+  return(cov_h)
+}
