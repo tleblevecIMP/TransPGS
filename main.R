@@ -24,7 +24,7 @@ nwell=ncol(facies)
 
 # preparing the grid
 # the vector is the vector of locations of the different wells (supposed all vertical)
-data_location<-matrix(c(1,1,5,10),2,nwell)
+data_location<-matrix(c(1,1,5,10),nwell,2)
 grid<-grid_construct(nx,ny,facies,data_location)
 
 #sim
