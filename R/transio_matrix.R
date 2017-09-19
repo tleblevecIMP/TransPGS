@@ -47,3 +47,45 @@ transio_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
   mat_t<-rbind(mat_t,distance)
   return(mat_t)
 }
+
+vario_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
+
+  mat_v<-vector("list",(nfacies)^2)
+  size = pixels_distance(n_pix,length,transio_length)
+  p<-proportion_2D(facies,nfacies) #proportion will be useful for the computation of the transition prob
+  distance<-distance_vector(size,length,n_pix)
+
+  print(facies)
+  # auto and cross transition probabilities computation
+  for ( i in seq(nfacies)){
+    for ( j in seq(nfacies)){
+      vij<-numeric(size)
+      fi<-binarize_facies(facies,i)
+      fj<-binarize_facies(facies,j)
+
+      if (vertical ==1 ){
+        for ( h in seq(size)){
+          for ( z in seq(nrow(fi)-h)){
+            vij[h]<-vij[h]+mean(fi[z,]*fj[z+h,],na.rm=TRUE)+mean(fj[z,]*fi[z+h,],na.rm=TRUE)
+          }
+          vij[h] = 0.5*vij[h] / (nrow(fi)-h)
+        }
+      }
+      if (vertical==0){
+        for ( h in seq(size)){
+          for ( x in seq(ncol(fi)-h)){
+            vij[h]<-vij[h]+mean(fi[,x]*fj[,x+h],na.rm=TRUE)+mean(fj[,x]*fi[,x+h],na.rm=TRUE)
+          }
+          vij[h] = 0.5*vij[h] / (ncol(fi)-h)
+        }
+      }
+      if (i==j){vij=1-vij} # the auto variogram has a different definition
+      mat_v[[(i-1)*(nfacies)+j]]<-vij
+    }
+  }
+
+  mat_v <- do.call(rbind,mat_v)
+  plot_transio(mat_v,distance,nfacies)
+  mat_v<-rbind(mat_v,distance)
+  return(mat_v)
+}
