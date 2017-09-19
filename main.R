@@ -3,7 +3,24 @@
 # test one one log of the latemar
 facies<-reading_facies_logs("latemar_section.txt",5)
 props<-proportion_2D(facies,5)
-t<-transio_analysis_log("latemar_section.txt",5,10,3)
+t<-transio_analysis_log("latemar_section.txt",5,10,5)
+v<-vario_analysis_log("latemar_section.txt",5,10,5)
+#computing some parameters of interest
+r13h= t[3,]/(1-t[1,])
+r31h=t[11,]/(1-t[13,])
+v13h=v[3,]/v[1,]
+beucherh=0.5*(props[1]*t[3,]+props[3]*t[11,])/(1-props[1]*t[1,])
+n=length(t[3,])
+x = (1:n)*5/n
+plot(x,r13h,type="l",ylim=c(0,1))
+lines(x,v13h)
+lines(x,beucherh)
+lines(x,r31h)
+# test
+sum=0
+for (i in 1:5){
+  sum=t[i,10]+sum
+}
 
 # other test
 #infering model
