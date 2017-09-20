@@ -7,20 +7,24 @@ t<-transio_analysis_log("latemar_section.txt",5,10,5)
 v<-vario_analysis_log("latemar_section.txt",5,10,5)
 #computing some parameters of interest
 r13h= t[3,]/(1-t[1,])
+r13mh=props[3]*t[11,]/((1-t[1,])*props[1])
 r31h=t[11,]/(1-t[13,])
 v13h=v[3,]/v[1,]
+v31h=v[11,]/v[13,]
 beucherh=0.5*(props[1]*t[3,]+props[3]*t[11,])/(1-props[1]*t[1,])
 n=length(t[3,])
 x = (1:n)*5/n
+layout(matrix(seq(1),1,1,byrow=TRUE))
 plot(x,r13h,type="l",ylim=c(0,1))
-lines(x,v13h)
-lines(x,beucherh)
-lines(x,r31h)
-# test
-sum=0
-for (i in 1:5){
-  sum=t[i,10]+sum
-}
+lines(x,r13mh,col="orange")
+lines(x,v13h,col="red")
+lines(x,t[3,]*props[1],col="blue")
+lines(x,t[11,]*props[3],col="green")
+legend(0.,1,c("-v13(h)/v11(h)","t13(h)/(1-t11(h))","t13(-h)/(1-t11(-h))","S2(h)","S2(-h)"), # puts text in the legend
+
+       lty=c(1,1,1,1,1), # gives the legend appropriate symbols (lines)
+
+       lwd=c(2.5,2.5,2.5,2.5,2.5),col=c("red","black","orange","blue","green")) # gives the legend lines the correct color and width)
 
 # other test
 #infering model
