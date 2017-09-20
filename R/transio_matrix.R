@@ -79,7 +79,7 @@ vario_matrix<-function(nfacies,facies,length,n_pix,transio_length,vertical){
           vij[h] = 0.5*vij[h] / (ncol(fi)-h)
         }
       }
-      if (i==j){vij=1-vij} # the auto variogram has a different definition
+      if (i==j){vij=p[i]-vij} # the auto variogram has a different definition
       mat_v[[(i-1)*(nfacies)+j]]<-vij
     }
   }
